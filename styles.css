@@ -2,12 +2,10 @@
    VARIÁVEIS (cores e tamanhos)
    =========================== */
 :root {
-  --cor-primaria: #4A90D9;       /* destaques sobre fundo escuro */
-  --cor-acao: #2b6cb0;           /* texto/botões sobre fundo claro (contraste AA) */
-  --cor-acao-hover: #245a94;
+  --cor-primaria: #4A90D9;
   --cor-escura: #1a1a2e;
   --cor-texto: #333;
-  --cor-texto-claro: #5a5a5a;
+  --cor-texto-claro: #666;
   --cor-fundo: #f5f7fa;
   --cor-branco: #ffffff;
   --cor-borda: #e0e0e0;
@@ -36,29 +34,6 @@ body {
   line-height: 1.6;
 }
 
-img {
-  max-width: 100%;
-}
-
-/* Foco visível para quem navega pelo teclado */
-:focus-visible {
-  outline: 3px solid var(--cor-primaria);
-  outline-offset: 3px;
-}
-
-/* Esconde visualmente, mas mantém para leitores de tela */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 /* ===========================
    HERO (topo da página)
    =========================== */
@@ -73,14 +48,13 @@ img {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  object-fit: cover; /* não distorce fotos que não são quadradas */
   border: 4px solid var(--cor-primaria);
   margin-bottom: 1.5rem;
+  /* Animação de entrada */
   animation: aparecer 0.8s ease forwards;
 }
 
 .hero h1 {
-  color: white;
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -125,13 +99,6 @@ img {
   font-weight: 500;
 }
 
-/* Tags dentro dos cards ficam sobre fundo branco: precisam de mais contraste */
-.card-tags .tag {
-  background: rgba(43, 108, 176, 0.1);
-  color: var(--cor-acao);
-  border-color: rgba(43, 108, 176, 0.3);
-}
-
 /* ===========================
    BOTÕES
    =========================== */
@@ -145,11 +112,10 @@ img {
 .btn {
   display: inline-block;
   padding: 10px 24px;
-  background: var(--cor-acao);
+  background: var(--cor-primaria);
   color: white;
   text-decoration: none;
   border-radius: var(--raio);
-  font-family: inherit;
   font-size: 0.9rem;
   font-weight: 500;
   border: none;
@@ -158,13 +124,13 @@ img {
 }
 
 .btn:hover {
-  background: var(--cor-acao-hover);
-  transform: translateY(-2px);
+  background: #357abd;
+  transform: translateY(-2px); /* sobe levemente no hover */
 }
 
 .btn-secundario {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .btn-secundario:hover {
@@ -203,10 +169,9 @@ img {
   transition: color var(--transicao), border-color var(--transicao);
 }
 
-.nav a:hover,
-.nav a.ativo {
-  color: var(--cor-acao);
-  border-bottom-color: var(--cor-acao);
+.nav a:hover {
+  color: var(--cor-primaria);
+  border-bottom-color: var(--cor-primaria);
 }
 
 /* ===========================
@@ -216,18 +181,13 @@ img {
   max-width: 800px;
   margin: 4rem auto;
   padding: 0 1.5rem;
-  scroll-margin-top: 70px; /* a nav sticky não cobre o título ao clicar no link */
-}
-
-/* Só esconde a seção se o JS estiver ativo (classe "js" no <html>).
-   Sem JS, o conteúdo aparece normalmente. */
-.js .secao {
+  /* Começa invisível — o JS vai animar */
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.js .secao.visivel {
+.secao.visivel {
   opacity: 1;
   transform: translateY(0);
 }
@@ -275,18 +235,11 @@ img {
   overflow: hidden;
 }
 
-/* O HTML define --nivel e --cor em cada barra.
-   Sem JS a barra já aparece cheia; com JS ela cresce quando a seção entra na tela. */
 .barra {
   height: 100%;
-  width: var(--nivel, 0);
-  background: var(--cor, var(--cor-primaria));
   border-radius: 99px;
+  width: 0; /* começa em 0 — JS vai animar até o valor real */
   transition: width 1.2s ease;
-}
-
-.js .secao:not(.visivel) .barra {
-  width: 0;
 }
 
 /* ===========================
@@ -349,10 +302,6 @@ img {
   color: var(--cor-texto-claro);
 }
 
-.contato-info a {
-  color: var(--cor-acao);
-}
-
 .formulario {
   display: flex;
   flex-direction: column;
@@ -361,8 +310,6 @@ img {
 
 .formulario input,
 .formulario textarea {
-  display: block;
-  width: 100%;
   padding: 12px 16px;
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio);
@@ -377,12 +324,8 @@ img {
 .formulario input:focus,
 .formulario textarea:focus {
   outline: none;
-  border-color: var(--cor-acao);
-  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.2);
-}
-
-.formulario .btn {
-  align-self: flex-start;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.15);
 }
 
 .mensagem-enviada {
@@ -425,27 +368,4 @@ img {
   .nav { gap: 1rem; }
   .contato-info { flex-direction: column; gap: 0.5rem; }
   .botoes { flex-direction: column; align-items: center; }
-}
-
-/* ===========================
-   ACESSIBILIDADE: menos movimento
-   =========================== */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-
-  .js .secao {
-    opacity: 1;
-    transform: none;
-  }
-
-  .js .secao:not(.visivel) .barra {
-    width: var(--nivel, 0);
-  }
 }
