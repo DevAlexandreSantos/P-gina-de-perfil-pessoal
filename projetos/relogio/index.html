@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Relógio Digital</title>
 <style>
   * { box-sizing: border-box; }
@@ -23,7 +24,6 @@
     font-size: 16px;
     color: #b4b2a9;
     margin-bottom: 8px;
-    text-transform: capitalize;
     letter-spacing: 0.5px;
   }
   .time {
@@ -76,53 +76,55 @@
   <div class="date" id="date"></div>
   <div class="time" id="time"></div>
   <div class="controls">
-    <button id="btn24" class="active">24h</button>
-    <button id="btn12">12h</button>
+    <button id="btn24" class="active" aria-pressed="true">24h</button>
+    <button id="btn12" aria-pressed="false">12h</button>
   </div>
 </div>
 
 <script>
 let format24 = true;
 
-const diasSemana = ['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
-const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+const timeEl = document.getElementById('time');
+const dateEl = document.getElementById('date');
+const btn24 = document.getElementById('btn24');
+const btn12 = document.getElementById('btn12');
 
 function pad(n) { return n.toString().padStart(2, '0'); }
 
 function updateClock() {
   const now = new Date();
   const h = now.getHours();
-  const m = now.getMinutes();
-  const s = now.getSeconds();
 
   let hourDisplay, ampm = '';
   if (format24) {
     hourDisplay = pad(h);
   } else {
-    const h12 = h % 12 === 0 ? 12 : h % 12;
-    hourDisplay = pad(h12);
+    hourDisplay = pad(h % 12 === 0 ? 12 : h % 12);
     ampm = h < 12 ? 'AM' : 'PM';
   }
 
-  document.getElementById('time').innerHTML =
-    `${hourDisplay}:${pad(m)}<span class="sec">${pad(s)}</span>${ampm ? `<span class="ampm">${ampm}</span>` : ''}`;
+  timeEl.innerHTML =
+    `${hourDisplay}:${pad(now.getMinutes())}<span class="sec">${pad(now.getSeconds())}</span>` +
+    (ampm ? `<span class="ampm">${ampm}</span>` : '');
 
-  document.getElementById('date').textContent =
-    `${diasSemana[now.getDay()]}, ${now.getDate()} de ${meses[now.getMonth()]} de ${now.getFullYear()}`;
+  // "sábado, 19 de setembro de 2026" -> só a primeira letra em maiúscula
+  const data = now.toLocaleDateString('pt-BR', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  });
+  dateEl.textContent = data.charAt(0).toUpperCase() + data.slice(1);
 }
 
-document.getElementById('btn24').addEventListener('click', () => {
-  format24 = true;
-  document.getElementById('btn24').classList.add('active');
-  document.getElementById('btn12').classList.remove('active');
+function setFormat(is24) {
+  format24 = is24;
+  btn24.classList.toggle('active', is24);
+  btn12.classList.toggle('active', !is24);
+  btn24.setAttribute('aria-pressed', is24);
+  btn12.setAttribute('aria-pressed', !is24);
   updateClock();
-});
-document.getElementById('btn12').addEventListener('click', () => {
-  format24 = false;
-  document.getElementById('btn12').classList.add('active');
-  document.getElementById('btn24').classList.remove('active');
-  updateClock();
-});
+}
+
+btn24.addEventListener('click', () => setFormat(true));
+btn12.addEventListener('click', () => setFormat(false));
 
 updateClock();
 setInterval(updateClock, 1000);

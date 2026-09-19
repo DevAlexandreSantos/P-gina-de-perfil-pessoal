@@ -1,54 +1,51 @@
 # 👋 Página de Perfil Pessoal
 
-Página de perfil pessoal desenvolvida com **HTML5**, **CSS3** e **JavaScript puro**, reunindo apresentação, habilidades, projetos e formulário de contato em um único site responsivo.
+Portfólio de **Alexandre da Silva Santos**, feito com **HTML5**, **CSS3** e **JavaScript puro**. Reúne apresentação, habilidades, projetos e formulário de contato em um site responsivo.
 
 🔗 **Repositório:** [P-gina-de-perfil-pessoal](https://github.com/DevAlexandreSantos/P-gina-de-perfil-pessoal)
 
+<!-- Adicione aqui o link do GitHub Pages e um print da página -->
+
 ---
-
-## ✨ Sobre o projeto
-
-Este projeto é o portfólio pessoal de **Alexandre da Silva Santos**, criado como prática de front-end e vitrine dos primeiros projetos em HTML, CSS e JavaScript.
 
 ## 🧩 Seções
 
-- **Cabeçalho (Hero)** — foto de perfil, nome, cargo e uma breve bio, com tags das tecnologias estudadas (HTML5, CSS3, JavaScript, Git, Figma) e botões de acesso ao GitHub e LinkedIn.
-- **Habilidades** — barras de progresso mostrando o nível atual em cada tecnologia.
-- **Projetos** — cards com os mini-projetos do portfólio:
-  - 🧮 **Calculadora** — operações básicas em HTML, CSS e JS puro.
-  - ✅ **To-Do List** — lista de tarefas com adição, remoção e salvamento no `localStorage`.
-  - 🕐 **Relógio Digital** — relógio em tempo real com animações em CSS/JS.
-- **Contato** — informações de contato e formulário simples de mensagem.
+- **Hero** — foto, nome, cargo, bio, tags de tecnologias e links para GitHub e LinkedIn.
+- **Habilidades** — barras de progresso animadas ao rolar a página.
+- **Projetos** — cards que levam a cada mini-projeto:
+  - 🧮 **Calculadora** — operações básicas.
+  - ✅ **To-Do List** — adicionar, remover, filtrar e salvar no `localStorage`.
+  - 🕐 **Relógio Digital** — hora em tempo real, com formato 24h/12h.
+  - 💼 **Cálculos Trabalhistas** — horas extras, férias e rescisão com as tabelas de INSS e IR de 2026.
+- **Contato** — e-mail, GitHub e um formulário que abre o app de e-mail do visitante (`mailto:`).
 
-## 🛠️ Tecnologias utilizadas
-
-- HTML5
-- CSS3
-- JavaScript
-
-## 📁 Estrutura do projeto
+## 📁 Estrutura
 
 ```
-├── Calculadora/       # Projeto: calculadora
-├── img/                # Imagens (avatar, etc.)
-├── index.html          # Página principal (perfil)
-├── index2.html         # Projeto: To-Do List
-├── index3.html         # Projeto: Relógio Digital
-├── script.js           # Scripts da página principal
-└── style.css           # Estilos da página principal
+├── index.html                 # Página principal
+├── css/
+│   └── styles.css             # Estilos do portfólio
+├── js/
+│   └── main.js                # Animações, navegação ativa e formulário
+├── img/
+│   └── avatar.jpg             # Foto de perfil
+└── projetos/
+    ├── calculadora/           # index.html, style.css, script.js
+    ├── to-do/                 # index.html (tudo em um arquivo)
+    ├── relogio/               # index.html (tudo em um arquivo)
+    └── trabalhista/           # index.html, styles.css, scripts.js
 ```
+
+Cada projeto fica na própria pasta, com seus próprios arquivos de CSS e JS. Assim um não interfere no outro.
 
 ## 🚀 Como executar localmente
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/DevAlexandreSantos/P-gina-de-perfil-pessoal.git
-   ```
-2. Entre na pasta do projeto:
-   ```bash
-   cd P-gina-de-perfil-pessoal
-   ```
-3. Abra o arquivo `index.html` no navegador (ou use a extensão **Live Server** do VS Code).
+```bash
+git clone https://github.com/DevAlexandreSantos/P-gina-de-perfil-pessoal.git
+cd P-gina-de-perfil-pessoal
+```
+
+Abra o `index.html` no navegador ou use a extensão **Live Server** do VS Code.
 
 ## 📬 Contato
 

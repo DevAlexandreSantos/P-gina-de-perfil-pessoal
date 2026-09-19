@@ -1,123 +1,13 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "poppins", sans-serif;
-}
-body{
-    padding-top: 20px;
-    padding-right: 100px;
-    padding-left: 100px;
-}
-.conteudo{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.caixa-texto{
-    width: 600px;
-}
-h1{
-    color: #F66C2D;
-    font-size: 60px;
-    font-weight: bold;
-    text-align: center;
-} 
-p{
-    font-size: 16px;
-    text-align: justify;
-}
-button{
-    background-color: #F66C2D;
-    color: white;
-    border-radius: 40px;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: 0,5s;
-}
-button:hover{
-    background-color: #f74e00;
-    color: white;
-    transform: scale(1.1);
-}
-.caixa-imagem{
-    width: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.Naruto{
-    width: 340px;
-}
-.menu{
-    display: flex;
-    justify-content: center;
-}
-.botao-menu{
-    width: 100px;
-    cursor: pointer;
-    transition: 0.5s;
-}
-.botao-menu:hover{
-    transform: translatey(-30px)
-}
-.circulo{
-    width: 100%;
-    height: 100%;
-    background-color: #f74e00;
-    position: absolute;
-    top: 0;
-    left: 0;
-    clip-path: circle(650px at right 600px);
-    z-index: -1;
-}
-/* Animação suave de entrada */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Aplicar animação */
-.animado {
-  animation: fadeIn 0.5s ease-in-out;
-}
-#personagem-info {
-  margin-top: 30px;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-}
-@keyframes girar {
-  from {
-    transform: rotate(0deg);
-    opacity: 0;
-  }
-  to {
-    transform: rotate(360deg);
-    opacity: 1;
-  }
-}
-
-.girar {
-  animation: girar 0.7s ease-in-out;
-}
-
 /* ===========================
    VARIÁVEIS (cores e tamanhos)
    =========================== */
 :root {
-  --cor-primaria: #4A90D9;
+  --cor-primaria: #4A90D9;       /* destaques sobre fundo escuro */
+  --cor-acao: #2b6cb0;           /* texto/botões sobre fundo claro (contraste AA) */
+  --cor-acao-hover: #245a94;
   --cor-escura: #1a1a2e;
   --cor-texto: #333;
-  --cor-texto-claro: #666;
+  --cor-texto-claro: #5a5a5a;
   --cor-fundo: #f5f7fa;
   --cor-branco: #ffffff;
   --cor-borda: #e0e0e0;
@@ -146,6 +36,29 @@ body {
   line-height: 1.6;
 }
 
+img {
+  max-width: 100%;
+}
+
+/* Foco visível para quem navega pelo teclado */
+:focus-visible {
+  outline: 3px solid var(--cor-primaria);
+  outline-offset: 3px;
+}
+
+/* Esconde visualmente, mas mantém para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ===========================
    HERO (topo da página)
    =========================== */
@@ -160,13 +73,14 @@ body {
   width: 120px;
   height: 120px;
   border-radius: 50%;
+  object-fit: cover; /* não distorce fotos que não são quadradas */
   border: 4px solid var(--cor-primaria);
   margin-bottom: 1.5rem;
-  /* Animação de entrada */
   animation: aparecer 0.8s ease forwards;
 }
 
 .hero h1 {
+  color: white;
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -211,6 +125,13 @@ body {
   font-weight: 500;
 }
 
+/* Tags dentro dos cards ficam sobre fundo branco: precisam de mais contraste */
+.card-tags .tag {
+  background: rgba(43, 108, 176, 0.1);
+  color: var(--cor-acao);
+  border-color: rgba(43, 108, 176, 0.3);
+}
+
 /* ===========================
    BOTÕES
    =========================== */
@@ -224,10 +145,11 @@ body {
 .btn {
   display: inline-block;
   padding: 10px 24px;
-  background: var(--cor-primaria);
+  background: var(--cor-acao);
   color: white;
   text-decoration: none;
   border-radius: var(--raio);
+  font-family: inherit;
   font-size: 0.9rem;
   font-weight: 500;
   border: none;
@@ -236,13 +158,13 @@ body {
 }
 
 .btn:hover {
-  background: #357abd;
-  transform: translateY(-2px); /* sobe levemente no hover */
+  background: var(--cor-acao-hover);
+  transform: translateY(-2px);
 }
 
 .btn-secundario {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .btn-secundario:hover {
@@ -281,9 +203,10 @@ body {
   transition: color var(--transicao), border-color var(--transicao);
 }
 
-.nav a:hover {
-  color: var(--cor-primaria);
-  border-bottom-color: var(--cor-primaria);
+.nav a:hover,
+.nav a.ativo {
+  color: var(--cor-acao);
+  border-bottom-color: var(--cor-acao);
 }
 
 /* ===========================
@@ -293,13 +216,18 @@ body {
   max-width: 800px;
   margin: 4rem auto;
   padding: 0 1.5rem;
-  /* Começa invisível — o JS vai animar */
+  scroll-margin-top: 70px; /* a nav sticky não cobre o título ao clicar no link */
+}
+
+/* Só esconde a seção se o JS estiver ativo (classe "js" no <html>).
+   Sem JS, o conteúdo aparece normalmente. */
+.js .secao {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.secao.visivel {
+.js .secao.visivel {
   opacity: 1;
   transform: translateY(0);
 }
@@ -347,11 +275,18 @@ body {
   overflow: hidden;
 }
 
+/* O HTML define --nivel e --cor em cada barra.
+   Sem JS a barra já aparece cheia; com JS ela cresce quando a seção entra na tela. */
 .barra {
   height: 100%;
+  width: var(--nivel, 0);
+  background: var(--cor, var(--cor-primaria));
   border-radius: 99px;
-  width: 0; /* começa em 0 — JS vai animar até o valor real */
   transition: width 1.2s ease;
+}
+
+.js .secao:not(.visivel) .barra {
+  width: 0;
 }
 
 /* ===========================
@@ -414,6 +349,10 @@ body {
   color: var(--cor-texto-claro);
 }
 
+.contato-info a {
+  color: var(--cor-acao);
+}
+
 .formulario {
   display: flex;
   flex-direction: column;
@@ -422,6 +361,8 @@ body {
 
 .formulario input,
 .formulario textarea {
+  display: block;
+  width: 100%;
   padding: 12px 16px;
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio);
@@ -436,8 +377,12 @@ body {
 .formulario input:focus,
 .formulario textarea:focus {
   outline: none;
-  border-color: var(--cor-primaria);
-  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.15);
+  border-color: var(--cor-acao);
+  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.2);
+}
+
+.formulario .btn {
+  align-self: flex-start;
 }
 
 .mensagem-enviada {
@@ -480,4 +425,27 @@ body {
   .nav { gap: 1rem; }
   .contato-info { flex-direction: column; gap: 0.5rem; }
   .botoes { flex-direction: column; align-items: center; }
+}
+
+/* ===========================
+   ACESSIBILIDADE: menos movimento
+   =========================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .js .secao {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js .secao:not(.visivel) .barra {
+    width: var(--nivel, 0);
+  }
 }
