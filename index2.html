@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Minha Lista de Tarefas</title>
+<style>
+  :root {
+    --bg: #f5f5f0;
+    --card: #ffffff;
+    --border: #e0ddd4;
+    --text: #2c2c2a;
+    --muted: #78766f;
+    --accent: #7f77dd;
+    --accent-dark: #534ab7;
+    --done: #9fe1cb;
+    --done-dark: #0f6e56;
+    --danger: #d85a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px;
+  }
+  .app {
+    width: 100%;
+    max-width: 480px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0 0 20px;
+  }
+  .input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  input[type="text"] {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    background: var(--card);
+    color: var(--text);
+  }
+  input[type="text"]:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .add-btn {
+    background: var(--accent);
+    color: white;
+    padding: 10px 18px;
+  }
+  .add-btn:hover { background: var(--accent-dark); }
+
+  .filters {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .filters button {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 6px 14px;
+  }
+  .filters button.active {
+    background: var(--text);
+    color: white;
+    border-color: var(--text);
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card);
+  }
+  .checkbox.checked {
+    background: var(--done);
+    border-color: var(--done-dark);
+    color: var(--done-dark);
+    font-size: 12px;
+  }
+  .item-text {
+    flex: 1;
+    font-size: 15px;
+    word-break: break-word;
+  }
+  .item.done .item-text {
+    text-decoration: line-through;
+    color: var(--muted);
+  }
+  .delete-btn {
+    background: transparent;
+    color: var(--muted);
+    padding: 4px 8px;
+    font-size: 16px;
+  }
+  .delete-btn:hover { color: var(--danger); }
+
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 40px 0;
+    font-size: 14px;
+  }
+
+  .footer {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .clear-btn {
+    background: transparent;
+    color: var(--muted);
+    text-decoration: underline;
+    font-size: 13px;
+    padding: 0;
+  }
+  .clear-btn:hover { color: var(--danger); }
+</style>
+</head>
+<body>
+<div class="app">
+  <h1>Minha lista de tarefas</h1>
+  <p class="subtitle" id="subtitle">Carregando...</p>
+
+  <div class="input-row">
+    <input type="text" id="newTask" placeholder="Adicionar nova tarefa..." />
+    <button class="add-btn" id="addBtn">Adicionar</button>
+  </div>
+
+  <div class="filters">
+    <button data-filter="all" class="active">Todas</button>
+    <button data-filter="pending">Pendentes</button>
+    <button data-filter="done">Concluídas</button>
+  </div>
+
+  <div class="list" id="list"></div>
+  <div class="empty" id="empty" style="display:none;">Nenhuma tarefa por aqui.</div>
+
+  <div class="footer">
+    <span id="count"></span>
+    <button class="clear-btn" id="clearDone">Limpar concluídas</button>
+  </div>
+</div>
+
+<script>
+let tasks = [];
+let filter = 'all';
+const STORAGE_KEY = 'todo-tasks';
+
+async function loadTasks() {
+  try {
+    const result = await window.storage.get(STORAGE_KEY);
+    tasks = result ? JSON.parse(result.value) : [];
+  } catch (e) {
+    tasks = [];
+  }
+  document.getElementById('subtitle').textContent = 'Organize seu dia';
+  render();
+}
+
+async function saveTasks() {
+  try {
+    await window.storage.set(STORAGE_KEY, JSON.stringify(tasks));
+  } catch (e) {
+    console.error('Erro ao salvar', e);
+  }
+}
+
+function addTask() {
+  const input = document.getElementById('newTask');
+  const text = input.value.trim();
+  if (!text) return;
+  tasks.unshift({ id: Date.now().toString(), text, done: false });
+  input.value = '';
+  saveTasks();
+  render();
+}
+
+function toggleTask(id) {
+  const t = tasks.find(t => t.id === id);
+  if (t) t.done = !t.done;
+  saveTasks();
+  render();
+}
+
+function deleteTask(id) {
+  tasks = tasks.filter(t => t.id !== id);
+  saveTasks();
+  render();
+}
+
+function clearDone() {
+  tasks = tasks.filter(t => !t.done);
+  saveTasks();
+  render();
+}
+
+function render() {
+  const list = document.getElementById('list');
+  const empty = document.getElementById('empty');
+  let filtered = tasks;
+  if (filter === 'pending') filtered = tasks.filter(t => !t.done);
+  if (filter === 'done') filtered = tasks.filter(t => t.done);
+
+  list.innerHTML = '';
+  if (filtered.length === 0) {
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    filtered.forEach(t => {
+      const item = document.createElement('div');
+      item.className = 'item' + (t.done ? ' done' : '');
+      item.innerHTML = `
+        <div class="checkbox ${t.done ? 'checked' : ''}" data-id="${t.id}">${t.done ? '✓' : ''}</div>
+        <div class="item-text">${escapeHtml(t.text)}</div>
+        <button class="delete-btn" data-id="${t.id}">✕</button>
+      `;
+      list.appendChild(item);
+    });
+  }
+
+  const pending = tasks.filter(t => !t.done).length;
+  document.getElementById('count').textContent =
+    tasks.length === 0 ? '' : `${pending} pendente${pending !== 1 ? 's' : ''} de ${tasks.length}`;
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+document.getElementById('addBtn').addEventListener('click', addTask);
+document.getElementById('newTask').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') addTask();
+});
+document.getElementById('list').addEventListener('click', (e) => {
+  const id = e.target.getAttribute('data-id');
+  if (!id) return;
+  if (e.target.classList.contains('checkbox')) toggleTask(id);
+  if (e.target.classList.contains('delete-btn')) deleteTask(id);
+});
+document.querySelectorAll('.filters button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filter = btn.getAttribute('data-filter');
+    render();
+  });
+});
+document.getElementById('clearDone').addEventListener('click', clearDone);
+
+loadTasks();
+</script>
+</body>
+</html>

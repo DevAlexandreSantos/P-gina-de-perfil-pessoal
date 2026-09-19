@@ -1,0 +1,371 @@
+/* ===========================
+   VARIÁVEIS (cores e tamanhos)
+   =========================== */
+:root {
+  --cor-primaria: #4A90D9;
+  --cor-escura: #1a1a2e;
+  --cor-texto: #333;
+  --cor-texto-claro: #666;
+  --cor-fundo: #f5f7fa;
+  --cor-branco: #ffffff;
+  --cor-borda: #e0e0e0;
+  --sombra: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --raio: 12px;
+  --transicao: 0.3s ease;
+}
+
+/* ===========================
+   RESET E BASE
+   =========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* rolagem suave ao clicar nos links da nav */
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+}
+
+/* ===========================
+   HERO (topo da página)
+   =========================== */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: white;
+  text-align: center;
+  padding: 4rem 2rem 3rem;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--cor-primaria);
+  margin-bottom: 1.5rem;
+  /* Animação de entrada */
+  animation: aparecer 0.8s ease forwards;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  animation: subir 0.8s ease 0.2s both;
+}
+
+.cargo {
+  color: var(--cor-primaria);
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  animation: subir 0.8s ease 0.3s both;
+}
+
+.bio {
+  max-width: 550px;
+  margin: 0 auto 1.5rem;
+  color: #ccc;
+  font-size: 0.95rem;
+  animation: subir 0.8s ease 0.4s both;
+}
+
+/* ===========================
+   TAGS DE TECNOLOGIA
+   =========================== */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  animation: subir 0.8s ease 0.5s both;
+}
+
+.tag {
+  background: rgba(74, 144, 217, 0.2);
+  color: var(--cor-primaria);
+  border: 1px solid rgba(74, 144, 217, 0.4);
+  padding: 4px 14px;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* ===========================
+   BOTÕES
+   =========================== */
+.botoes {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  animation: subir 0.8s ease 0.6s both;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 24px;
+  background: var(--cor-primaria);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--raio);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transicao), transform var(--transicao);
+}
+
+.btn:hover {
+  background: #357abd;
+  transform: translateY(-2px); /* sobe levemente no hover */
+}
+
+.btn-secundario {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-secundario:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-card {
+  font-size: 0.85rem;
+  padding: 8px 18px;
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* ===========================
+   NAVEGAÇÃO
+   =========================== */
+.nav {
+  background: var(--cor-branco);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  box-shadow: var(--sombra);
+  position: sticky; /* fica fixo no topo ao rolar */
+  top: 0;
+  z-index: 100;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--cor-texto-claro);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transicao), border-color var(--transicao);
+}
+
+.nav a:hover {
+  color: var(--cor-primaria);
+  border-bottom-color: var(--cor-primaria);
+}
+
+/* ===========================
+   SEÇÕES
+   =========================== */
+.secao {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  /* Começa invisível — o JS vai animar */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.secao.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.secao h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--cor-escura);
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+/* Linha decorativa embaixo do título */
+.secao h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--cor-primaria);
+  border-radius: 2px;
+}
+
+/* ===========================
+   HABILIDADES (barras)
+   =========================== */
+.habilidade {
+  margin-bottom: 1.2rem;
+}
+
+.habilidade-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.barra-fundo {
+  background: var(--cor-borda);
+  border-radius: 99px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.barra {
+  height: 100%;
+  border-radius: 99px;
+  width: 0; /* começa em 0 — JS vai animar até o valor real */
+  transition: width 1.2s ease;
+}
+
+/* ===========================
+   PROJETOS (grid de cards)
+   =========================== */
+.grid-projetos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.card-projeto {
+  background: var(--cor-branco);
+  border-radius: var(--raio);
+  padding: 1.5rem;
+  box-shadow: var(--sombra);
+  border: 1px solid var(--cor-borda);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform var(--transicao), box-shadow var(--transicao);
+}
+
+.card-projeto:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card-emoji {
+  font-size: 2rem;
+}
+
+.card-projeto h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cor-escura);
+}
+
+.card-projeto p {
+  font-size: 0.9rem;
+  color: var(--cor-texto-claro);
+  flex: 1;
+}
+
+.card-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ===========================
+   CONTATO
+   =========================== */
+.contato-info {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  color: var(--cor-texto-claro);
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formulario input,
+.formulario textarea {
+  padding: 12px 16px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--cor-branco);
+  color: var(--cor-texto);
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+  resize: vertical;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.15);
+}
+
+.mensagem-enviada {
+  margin-top: 1rem;
+  color: #2e7d32;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* ===========================
+   RODAPÉ
+   =========================== */
+.rodape {
+  text-align: center;
+  padding: 2rem;
+  color: var(--cor-texto-claro);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--cor-borda);
+  margin-top: 4rem;
+}
+
+/* ===========================
+   ANIMAÇÕES
+   =========================== */
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes subir {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================
+   RESPONSIVO (mobile)
+   =========================== */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.8rem; }
+  .nav { gap: 1rem; }
+  .contato-info { flex-direction: column; gap: 0.5rem; }
+  .botoes { flex-direction: column; align-items: center; }
+}

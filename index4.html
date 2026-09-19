@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="tela">
+
+    <!-- CALCULADORA -->
+    <div class="calculadora">
+
+      <!-- VISOR -->
+      <div class="visor">
+        <p id="historico"></p>
+        <p id="display">0</p>
+      </div>
+
+      <!-- BOTÕES -->
+      <div class="botoes">
+
+        <!-- Linha 1 -->
+        <button class="btn btn-cinza" onclick="limpar()">AC</button>
+        <button class="btn btn-cinza" onclick="inverter()">+/-</button>
+        <button class="btn btn-cinza" onclick="porcentagem()">%</button>
+        <button class="btn btn-laranja" onclick="operador('/')">÷</button>
+
+        <!-- Linha 2 -->
+        <button class="btn" onclick="digito('7')">7</button>
+        <button class="btn" onclick="digito('8')">8</button>
+        <button class="btn" onclick="digito('9')">9</button>
+        <button class="btn btn-laranja" onclick="operador('*')">×</button>
+
+        <!-- Linha 3 -->
+        <button class="btn" onclick="digito('4')">4</button>
+        <button class="btn" onclick="digito('5')">5</button>
+        <button class="btn" onclick="digito('6')">6</button>
+        <button class="btn btn-laranja" onclick="operador('-')">−</button>
+
+        <!-- Linha 4 -->
+        <button class="btn" onclick="digito('1')">1</button>
+        <button class="btn" onclick="digito('2')">2</button>
+        <button class="btn" onclick="digito('3')">3</button>
+        <button class="btn btn-laranja" onclick="operador('+')">+</button>
+
+        <!-- Linha 5 -->
+        <button class="btn btn-zero" onclick="digito('0')">0</button>
+        <button class="btn" onclick="ponto()">.</button>
+        <button class="btn btn-laranja" onclick="calcular()">=</button>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

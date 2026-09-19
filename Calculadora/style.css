@@ -1,0 +1,152 @@
+/* ===========================
+   VARIÁVEIS
+   =========================== */
+:root {
+  --cor-fundo: #1c1c1e;
+  --cor-visor: #2c2c2e;
+  --cor-btn: #3a3a3c;
+  --cor-btn-hover: #505052;
+  --cor-cinza: #636366;
+  --cor-cinza-hover: #7c7c80;
+  --cor-laranja: #ff9f0a;
+  --cor-laranja-hover: #ffb340;
+  --cor-texto: #ffffff;
+  --raio: 16px;
+}
+
+/* ===========================
+   RESET E BASE
+   =========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ===========================
+   CALCULADORA
+   =========================== */
+.tela {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.calculadora {
+  background: var(--cor-fundo);
+  border-radius: var(--raio);
+  width: 320px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* ===========================
+   VISOR
+   =========================== */
+.visor {
+  background: var(--cor-visor);
+  padding: 1.5rem 1.2rem 1rem;
+  text-align: right;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#historico {
+  font-size: 14px;
+  color: #888;
+  min-height: 20px;
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+
+#display {
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--cor-texto);
+  word-break: break-all;
+  line-height: 1.1;
+}
+
+/* ===========================
+   GRADE DE BOTÕES
+   =========================== */
+.botoes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #000;
+  padding: 1px;
+}
+
+/* ===========================
+   BOTÕES
+   =========================== */
+.btn {
+  background: var(--cor-btn);
+  color: var(--cor-texto);
+  border: none;
+  font-size: 22px;
+  font-weight: 400;
+  padding: 20px 0;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  font-family: inherit;
+}
+
+.btn:hover {
+  background: var(--cor-btn-hover);
+}
+
+.btn:active {
+  transform: scale(0.94);
+}
+
+/* Botões cinza (AC, +/-, %) */
+.btn-cinza {
+  background: var(--cor-cinza);
+  color: #000;
+  font-weight: 500;
+}
+
+.btn-cinza:hover {
+  background: var(--cor-cinza-hover);
+}
+
+/* Botões laranja (operadores) */
+.btn-laranja {
+  background: var(--cor-laranja);
+  color: #fff;
+  font-weight: 500;
+}
+
+.btn-laranja:hover {
+  background: var(--cor-laranja-hover);
+}
+
+/* Botão 0 ocupa duas colunas */
+.btn-zero {
+  grid-column: span 2;
+  text-align: left;
+  padding-left: 28px;
+}
+
+/* ===========================
+   RESPONSIVO
+   =========================== */
+@media (max-width: 400px) {
+  .calculadora { width: 100%; border-radius: 0; }
+  #display { font-size: 36px; }
+  .btn { font-size: 18px; padding: 16px 0; }
+}
