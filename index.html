@@ -1,181 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meu Perfil</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-
-  <!-- ===== CABEÇALHO / HERO ===== -->
-  <header class="hero">
-    <img src="img/Avatar.jpg" alt="Foto de perfil" class="avatar" />
-    <h1>Alexandre da Silva Santos</h1>
-    <p class="cargo">Desenvolvedor Front-end Jr.</p>
-    <p class="bio">
-      Estudante de programação apaixonado por criar interfaces bonitas e funcionais.
-      Atualmente aprendendo HTML5, CSS3 e JavaScript.
-    </p>
-
-    <!-- Tags de tecnologias -->
-    <div class="tags">
-      <span class="tag">HTML5</span>
-      <span class="tag">CSS3</span>
-      <span class="tag">JavaScript</span>
-      <span class="tag">Git</span>
-      <span class="tag">Figma</span>
-    </div>
-
-    <!-- Botões de redes sociais -->
-    <div class="botoes">
-      <a href="https://github.com/DevAlexandreSantos" target="_blank" class="btn">GitHub</a>
-      <a href="https://www.linkedin.com/in/alexandre-da-silva-santos-99763a1a1/" target="_blank" class="btn btn-secundario">LinkedIn</a>
-    </div>
-  </header>
-
-  <!-- ===== NAVEGAÇÃO ===== -->
-  <nav class="nav">
-    <a href="#habilidades">Habilidades</a>
-    <a href="#projetos">Projetos</a>
-    <a href="#contato">Contato</a>
-  </nav>
-
-  <main>
-
-    <!-- ===== HABILIDADES ===== -->
-    <section id="habilidades" class="secao">
-      <h2>Habilidades</h2>
-
-      <div class="habilidade">
-        <div class="habilidade-info">
-          <span>HTML5</span>
-          <span>85%</span>
-        </div>
-        <div class="barra-fundo">
-          <div class="barra" style="width: 85%; background: #e96b2e;"></div>
-        </div>
-      </div>
-
-      <div class="habilidade">
-        <div class="habilidade-info">
-          <span>CSS3</span>
-          <span>70%</span>
-        </div>
-        <div class="barra-fundo">
-          <div class="barra" style="width: 70%; background: #2965f1;"></div>
-        </div>
-      </div>
-
-      <div class="habilidade">
-        <div class="habilidade-info">
-          <span>JavaScript</span>
-          <span>50%</span>
-        </div>
-        <div class="barra-fundo">
-          <div class="barra" style="width: 50%; background: #f0db4f;"></div>
-        </div>
-      </div>
-
-      <div class="habilidade">
-        <div class="habilidade-info">
-          <span>Git</span>
-          <span>60%</span>
-        </div>
-        <div class="barra-fundo">
-          <div class="barra" style="width: 60%; background: #f05032;"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== PROJETOS ===== -->
-    <section id="projetos" class="secao">
-      <h2>Projetos</h2>
-
-      <div class="grid-projetos">
-
-        <div class="card-projeto">
-          <div class="card-emoji">🧮</div>
-          <h3>Calculadora</h3>
-          <p>Calculadora com operações básicas feita com HTML, CSS e JavaScript puro.</p>
-          <div class="card-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JS</span>
-          </div>
-          <a href="projetos/calculadora/index.html" class="btn btn-card" target="_blank">Ver projeto</a>
-        </div>
-
-        <div class="card-projeto">
-          <div class="card-emoji">✅</div>
-          <h3>To-Do List</h3>
-          <p>Lista de tarefas com adição, remoção e salvamento no localStorage.</p>
-          <div class="card-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JS</span>
-          </div>
-          <a href="projetos/to-do/index.html" class="btn btn-card" target="_blank">Ver projeto</a>
-        </div>
-
-        <div class="card-projeto">
-          <div class="card-emoji">🕐</div>
-          <h3>Relógio Digital</h3>
-          <p>Relógio com hora em tempo real e animações feitas com CSS e JavaScript.</p>
-          <div class="card-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JS</span>
-          </div>
-          <a href="projetos/relogio/index.html" class="btn btn-card" target="_blank">Ver projeto</a>
-        </div>
-
-        <div class="card-projeto">
-          <div class="card-emoji">🧮</div>
-          <h3>Calculos Trabalhistas
-          </h3>
-          <p>Calculos trabalhistas com operações básicas feita com HTML, CSS e JavaScript puro.</p>
-          <div class="card-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JS</span>
-          </div>
-          <a href="projetos/trabalhista/index.html" class="btn btn-card" target="_blank">Ver projeto</a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ===== CONTATO ===== -->
-    <section id="contato" class="secao">
-      <h2>Contato</h2>
-
-      <div class="contato-info">
-        <p>📧 djxande122@gmail.com</p>
-        <p>📍 Francisco Morato, Brasil</p>
-        <p>🌐 DevAlexandre Santos</p>
-      </div>
-
-      <!-- Formulário simples -->
-      <form id="formulario" class="formulario">
-        <input type="text" id="nome" placeholder="Seu nome" required />
-        <input type="email" id="email" placeholder="Seu e-mail" required />
-        <textarea id="mensagem" placeholder="Sua mensagem..." rows="5" required></textarea>
-        <button type="submit" class="btn">Enviar mensagem</button>
-      </form>
-
-      <p id="mensagem-enviada" class="mensagem-enviada" style="display: none;">
-        ✅ Mensagem enviada com sucesso!
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Perfil</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ===== CABEÇALHO / HERO ===== -->
+    <header class="hero">
+      <img src="img/Avatar.jpg" alt="Foto de perfil" class="avatar" />
+      <h1>Alexandre da Silva Santos</h1>
+      <p class="cargo">Desenvolvedor Front-end Jr.</p>
+      <p class="bio">
+        Estudante de programação apaixonado por criar interfaces bonitas e
+        funcionais. Atualmente aprendendo HTML5, CSS3 e JavaScript.
       </p>
-    </section>
 
-  </main>
+      <!-- Tags de tecnologias -->
+      <div class="tags">
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Git</span>
+        <span class="tag">Figma</span>
+      </div>
 
-  <!-- ===== RODAPÉ ===== -->
-  <footer class="rodape">
-    <p>Feito por Alexandre Santos · 2026</p>
-  </footer>
+      <!-- Botões de redes sociais -->
+      <div class="botoes">
+        <a
+          href="https://github.com/DevAlexandreSantos"
+          target="_blank"
+          class="btn"
+          >GitHub</a
+        >
+        <a
+          href="https://www.linkedin.com/in/alexandre-da-silva-santos-99763a1a1/"
+          target="_blank"
+          class="btn btn-secundario"
+          >LinkedIn</a
+        >
+      </div>
+    </header>
 
-  <script src="script.js"></script>
-</body>
+    <!-- ===== NAVEGAÇÃO ===== -->
+    <nav class="nav">
+      <a href="#habilidades">Habilidades</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <main>
+      <!-- ===== HABILIDADES ===== -->
+      <section id="habilidades" class="secao">
+        <h2>Habilidades</h2>
+
+        <div class="habilidade">
+          <div class="habilidade-info">
+            <span>HTML5</span>
+            <span>85%</span>
+          </div>
+          <div class="barra-fundo">
+            <div class="barra" style="width: 85%; background: #e96b2e"></div>
+          </div>
+        </div>
+
+        <div class="habilidade">
+          <div class="habilidade-info">
+            <span>CSS3</span>
+            <span>70%</span>
+          </div>
+          <div class="barra-fundo">
+            <div class="barra" style="width: 70%; background: #2965f1"></div>
+          </div>
+        </div>
+
+        <div class="habilidade">
+          <div class="habilidade-info">
+            <span>JavaScript</span>
+            <span>50%</span>
+          </div>
+          <div class="barra-fundo">
+            <div class="barra" style="width: 50%; background: #f0db4f"></div>
+          </div>
+        </div>
+
+        <div class="habilidade">
+          <div class="habilidade-info">
+            <span>Git</span>
+            <span>60%</span>
+          </div>
+          <div class="barra-fundo">
+            <div class="barra" style="width: 60%; background: #f05032"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PROJETOS ===== -->
+      <section id="projetos" class="secao">
+        <h2>Projetos</h2>
+
+        <div class="grid-projetos">
+          <div class="card-projeto">
+            <div class="card-emoji">🧮</div>
+            <h3>Calculadora</h3>
+            <p>
+              Calculadora com operações básicas feita com HTML, CSS e JavaScript
+              puro.
+            </p>
+            <div class="card-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JS</span>
+            </div>
+            <a
+              href="projetos/calculadora/index.html"
+              class="btn btn-card"
+              target="_blank"
+              >Ver projeto</a
+            >
+          </div>
+
+          <div class="card-projeto">
+            <div class="card-emoji">✅</div>
+            <h3>To-Do List</h3>
+            <p>
+              Lista de tarefas com adição, remoção e salvamento no localStorage.
+            </p>
+            <div class="card-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JS</span>
+            </div>
+            <a
+              href="projetos/to-do/index.html"
+              class="btn btn-card"
+              target="_blank"
+              >Ver projeto</a
+            >
+          </div>
+
+          <div class="card-projeto">
+            <div class="card-emoji">🕐</div>
+            <h3>Relógio Digital</h3>
+            <p>
+              Relógio com hora em tempo real e animações feitas com CSS e
+              JavaScript.
+            </p>
+            <div class="card-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JS</span>
+            </div>
+            <a
+              href="projetos/relogio/index.html"
+              class="btn btn-card"
+              target="_blank"
+              >Ver projeto</a
+            >
+          </div>
+
+          <div class="card-projeto">
+            <div class="card-emoji">🧮</div>
+            <h3>Calculos Trabalhistas</h3>
+            <p>
+              Calculos trabalhistas com operações básicas feita com HTML, CSS e
+              JavaScript puro.
+            </p>
+            <div class="card-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JS</span>
+            </div>
+            <a
+              href="projetos/trabalhista/index.html"
+              class="btn btn-card"
+              target="_blank"
+              >Ver projeto</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CONTATO ===== -->
+      <section id="contato" class="secao">
+        <h2>Contato</h2>
+
+        <div class="contato-info">
+          <p>📧 djxande122@gmail.com</p>
+          <p>📍 Francisco Morato, Brasil</p>
+          <p>🌐 DevAlexandre Santos</p>
+        </div>
+
+        <!-- Formulário simples -->
+        <form id="formulario" class="formulario">
+          <input type="text" id="nome" placeholder="Seu nome" required />
+          <input type="email" id="email" placeholder="Seu e-mail" required />
+          <textarea
+            id="mensagem"
+            placeholder="Sua mensagem..."
+            rows="5"
+            required
+          ></textarea>
+          <button type="submit" class="btn">Enviar mensagem</button>
+        </form>
+
+        <p id="mensagem-enviada" class="mensagem-enviada" style="display: none">
+          ✅ Mensagem enviada com sucesso!
+        </p>
+      </section>
+    </main>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer class="rodape">
+      <p>Feito por Alexandre Santos · 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
 </html>

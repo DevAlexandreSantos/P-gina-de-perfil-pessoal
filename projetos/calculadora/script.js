@@ -15,17 +15,17 @@
 // Estas variáveis guardam o estado atual
 // ============================================
 
-let valorAtual   = '0';   // número sendo digitado
+let valorAtual = '0';   // número sendo digitado
 let valorAnterior = '';   // número antes do operador
 let operadorAtual = '';   // operador escolhido (+, -, *, /)
-let novoNumero    = false; // flag: próximo dígito começa número novo
+let novoNumero = false; // flag: próximo dígito começa número novo
 
 
 // ============================================
 // REFERÊNCIAS AOS ELEMENTOS HTML
 // ============================================
 
-const display   = document.getElementById('display');
+const display = document.getElementById('display');
 const historico = document.getElementById('historico');
 
 
@@ -95,7 +95,7 @@ function operador(op) {
 
   valorAnterior = valorAtual;
   operadorAtual = op;
-  novoNumero    = true; // próximo dígito começa número novo
+  novoNumero = true; // próximo dígito começa número novo
 
   // Mostra no histórico qual operador foi escolhido
   const simbolo = { '+': '+', '-': '−', '*': '×', '/': '÷' };
@@ -156,10 +156,10 @@ function calcular(parcial) {
 // ============================================
 
 function limpar() {
-  valorAtual    = '0';
+  valorAtual = '0';
   valorAnterior = '';
   operadorAtual = '';
-  novoNumero    = false;
+  novoNumero = false;
   historico.textContent = '';
   atualizarVisor();
 }
@@ -192,7 +192,7 @@ function porcentagem() {
 // Permite usar a calculadora pelo teclado físico
 // ============================================
 
-document.addEventListener('keydown', function(evento) {
+document.addEventListener('keydown', function (evento) {
   const tecla = evento.key;
 
   if (tecla >= '0' && tecla <= '9') digito(tecla);

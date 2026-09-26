@@ -2,7 +2,7 @@
    VARIÁVEIS (cores e tamanhos)
    =========================== */
 :root {
-  --cor-primaria: #4A90D9;
+  --cor-primaria: #4a90d9;
   --cor-escura: #1a1a2e;
   --cor-texto: #333;
   --cor-texto-claro: #666;
@@ -28,7 +28,7 @@ html {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
   line-height: 1.6;
@@ -120,7 +120,9 @@ body {
   font-weight: 500;
   border: none;
   cursor: pointer;
-  transition: background var(--transicao), transform var(--transicao);
+  transition:
+    background var(--transicao),
+    transform var(--transicao);
 }
 
 .btn:hover {
@@ -166,7 +168,9 @@ body {
   font-weight: 500;
   padding: 4px 0;
   border-bottom: 2px solid transparent;
-  transition: color var(--transicao), border-color var(--transicao);
+  transition:
+    color var(--transicao),
+    border-color var(--transicao);
 }
 
 .nav a:hover {
@@ -184,7 +188,9 @@ body {
   /* Começa invisível — o JS vai animar */
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .secao.visivel {
@@ -203,7 +209,7 @@ body {
 
 /* Linha decorativa embaixo do título */
 .secao h2::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -260,7 +266,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  transition: transform var(--transicao), box-shadow var(--transicao);
+  transition:
+    transform var(--transicao),
+    box-shadow var(--transicao);
 }
 
 .card-projeto:hover {
@@ -317,7 +325,9 @@ body {
   font-family: inherit;
   background: var(--cor-branco);
   color: var(--cor-texto);
-  transition: border-color var(--transicao), box-shadow var(--transicao);
+  transition:
+    border-color var(--transicao),
+    box-shadow var(--transicao);
   resize: vertical;
 }
 
@@ -351,21 +361,43 @@ body {
    ANIMAÇÕES
    =========================== */
 @keyframes aparecer {
-  from { opacity: 0; transform: scale(0.8); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes subir {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ===========================
    RESPONSIVO (mobile)
    =========================== */
 @media (max-width: 600px) {
-  .hero h1 { font-size: 1.8rem; }
-  .nav { gap: 1rem; }
-  .contato-info { flex-direction: column; gap: 0.5rem; }
-  .botoes { flex-direction: column; align-items: center; }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .nav {
+    gap: 1rem;
+  }
+  .contato-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .botoes {
+    flex-direction: column;
+    align-items: center;
+  }
 }

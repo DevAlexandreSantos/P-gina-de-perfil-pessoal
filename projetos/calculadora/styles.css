@@ -24,7 +24,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
   background-color: #000;
   display: flex;
   justify-content: center;
@@ -101,7 +101,9 @@ body {
   font-weight: 400;
   padding: 20px 0;
   cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
+  transition:
+    background 0.15s,
+    transform 0.1s;
   font-family: inherit;
 }
 
@@ -146,7 +148,15 @@ body {
    RESPONSIVO
    =========================== */
 @media (max-width: 400px) {
-  .calculadora { width: 100%; border-radius: 0; }
-  #display { font-size: 36px; }
-  .btn { font-size: 18px; padding: 16px 0; }
+  .calculadora {
+    width: 100%;
+    border-radius: 0;
+  }
+  #display {
+    font-size: 36px;
+  }
+  .btn {
+    font-size: 18px;
+    padding: 16px 0;
+  }
 }
