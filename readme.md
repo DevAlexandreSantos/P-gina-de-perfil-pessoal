@@ -16,24 +16,22 @@ Portfólio de **Alexandre da Silva Santos**, feito com **HTML5**, **CSS3** e **J
   - 🧮 **Calculadora** — operações básicas.
   - ✅ **To-Do List** — adicionar, remover, filtrar e salvar no `localStorage`.
   - 🕐 **Relógio Digital** — hora em tempo real, com formato 24h/12h.
-  - 💼 **Cálculos Trabalhistas** — horas extras, férias e rescisão com as tabelas de INSS e IR de 2026.
+  - 💼 **Cálculos Trabalhistas** — horas extras, férias, rescisão e folha de pagamento completa, com as tabelas de INSS e IR de 2026.
 - **Contato** — e-mail, GitHub e um formulário que abre o app de e-mail do visitante (`mailto:`).
 
 ## 📁 Estrutura
 
 ```
 ├── index.html                 # Página principal
-├── css/
-│   └── styles.css             # Estilos do portfólio
-├── js/
-│   └── main.js                # Animações, navegação ativa e formulário
+├── styles.css                 # Estilos do portfólio
+├── script.js                  # Animações ao rolar, navegação ativa e formulário de contato
 ├── img/
-│   └── avatar.jpg             # Foto de perfil
+│   └── Avatar.jpg             # Foto de perfil
 └── projetos/
-    ├── calculadora/           # index.html, style.css, script.js
+    ├── calculadora/           # index.html, styles.css, script.js
     ├── to-do/                 # index.html (tudo em um arquivo)
     ├── relogio/               # index.html (tudo em um arquivo)
-    └── trabalhista/           # index.html, styles.css, scripts.js
+    └── trabalhista/           # index.html, styles.css, script.js — inclui a aba "Folha completa"
 ```
 
 Cada projeto fica na própria pasta, com seus próprios arquivos de CSS e JS. Assim um não interfere no outro.
