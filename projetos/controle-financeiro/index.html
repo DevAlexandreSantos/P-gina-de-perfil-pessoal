@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Controle financeiro</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Controle financeiro</h1>
+        <div>
+          <select id="ano" aria-label="Ano"></select>
+          <select id="mes" aria-label="Mês"></select>
+          <button id="reload" title="Atualizar dados">Atualizar</button>
+        </div>
+      </header>
+
+      <div class="grid k">
+        <div class="card">
+          <div class="kl">Receitas</div>
+          <div class="kv" id="kR" style="color: var(--g)"></div>
+        </div>
+        <div class="card">
+          <div class="kl">Despesas</div>
+          <div class="kv" id="kD" style="color: var(--r)"></div>
+        </div>
+        <div class="card">
+          <div class="kl">Investido</div>
+          <div class="kv" id="kI" style="color: var(--b)"></div>
+          <div class="ks" id="kIs"></div>
+        </div>
+        <div class="card">
+          <div class="kl">Saldo</div>
+          <div class="kv" id="kS"></div>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="card">
+          <h2>Receitas × despesas por mês</h2>
+          <div class="cv"><canvas id="cMes"></canvas></div>
+        </div>
+        <div class="card">
+          <h2>Gastos por categoria</h2>
+          <div id="cats"></div>
+        </div>
+      </div>
+
+      <div class="grid three">
+        <div class="card">
+          <h2>Investido acumulado</h2>
+          <div class="cv"><canvas id="cAcum"></canvas></div>
+        </div>
+        <div class="card">
+          <h2 id="tInv">Investido por categoria</h2>
+          <div class="cv"><canvas id="cInv"></canvas></div>
+        </div>
+        <div class="card">
+          <h2>Maiores despesas</h2>
+          <div id="top"></div>
+        </div>
+      </div>
+
+      <div class="chips" id="chips"></div>
+      <div id="msg"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
