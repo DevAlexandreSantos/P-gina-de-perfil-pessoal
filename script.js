@@ -123,11 +123,15 @@ if (formulario) {
 const USUARIO_GITHUB = 'DevAlexandreSantos';
 const MAX_REPOS = 6;
 const CACHE_CHAVE = 'repos-github';
-const CACHE_MINUTOS = 10;
+const CACHE_MINUTOS = 5;
 
 // Repositórios que não precisam aparecer (nomes em minúsculo):
 // este próprio site e o repositório de README do perfil
-const REPOS_IGNORADOS = ['p-gina-de-perfil-pessoal', USUARIO_GITHUB.toLowerCase()];
+const REPOS_IGNORADOS = ['p-gina-de-perfil-pessoal', USUARIO_GITHUB.toLowerCase(),
+  'relogio',
+  'trabalhista',
+  'to-do',
+];
 
 const listaRepos = document.getElementById('repos-github');
 
