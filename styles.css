@@ -401,3 +401,58 @@ body {
     align-items: center;
   }
 }
+
+/* ===========================
+   PROJETOS DO GITHUB (lista automática)
+   =========================== */
+.github-projetos {
+  margin-top: 3rem;
+}
+
+.github-projetos h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--cor-escura);
+}
+
+.github-texto {
+  color: var(--cor-texto-claro);
+  font-size: 0.9rem;
+  margin: 0.25rem 0 1.5rem;
+}
+
+.repos-status {
+  grid-column: 1 / -1; /* mensagem ocupa a linha inteira do grid */
+  color: var(--cor-texto-claro);
+  font-size: 0.9rem;
+}
+
+.btn-github {
+  margin-top: 1.5rem;
+}
+
+.contato-info a {
+  color: #357abd;
+}
+
+/* ===========================
+   ACESSIBILIDADE
+   =========================== */
+.btn:focus-visible,
+.nav a:focus-visible,
+.contato-info a:focus-visible {
+  outline: 3px solid var(--cor-primaria);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

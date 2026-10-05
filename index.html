@@ -161,7 +161,7 @@
           </div>
 
           <div class="card-projeto">
-            <div class="card-emoji">🧮</div>
+            <div class="card-emoji">💼</div>
             <h3>Calculos Trabalhistas</h3>
             <p>
               Calculos trabalhistas com operações básicas feita com HTML, CSS e
@@ -181,7 +181,7 @@
           </div>
 
           <div class="card-projeto">
-            <div class="card-emoji">🧮</div>
+            <div class="card-emoji">💰</div>
             <h3>Controle de Gastos</h3>
             <p>
               Aplicação para controle de gastos com registro e visualização de
@@ -200,6 +200,24 @@
             >
           </div>
         </div>
+
+        <!-- Lista automática: repositórios públicos do GitHub (ver script.js) -->
+        <div class="github-projetos">
+          <h3>Mais projetos no GitHub</h3>
+          <p class="github-texto">
+            Lista atualizada automaticamente a partir do meu perfil.
+          </p>
+          <div id="repos-github" class="grid-projetos" aria-live="polite">
+            <p class="repos-status">Carregando repositórios...</p>
+          </div>
+          <a
+            href="https://github.com/DevAlexandreSantos?tab=repositories"
+            class="btn btn-github"
+            target="_blank"
+            rel="noopener"
+            >Ver todos no GitHub</a
+          >
+        </div>
       </section>
 
       <!-- ===== CONTATO ===== -->
@@ -209,11 +227,16 @@
         <div class="contato-info">
           <p>📧 djxande122@gmail.com</p>
           <p>📍 Francisco Morato, Brasil</p>
-          <p>🌐 DevAlexandre Santos</p>
+          <p>
+            🌐
+            <a href="https://github.com/DevAlexandreSantos" target="_blank" rel="noopener"
+              >github.com/DevAlexandreSantos</a
+            >
+          </p>
         </div>
 
         <!-- Formulário simples -->
-        <form id="formulario" class="formulario">
+        <form id="formulario" class="formulario" data-destino="djxande122@gmail.com">
           <input type="text" id="nome" placeholder="Seu nome" required />
           <input type="email" id="email" placeholder="Seu e-mail" required />
           <textarea
@@ -225,7 +248,7 @@
           <button type="submit" class="btn">Enviar mensagem</button>
         </form>
 
-        <p id="mensagem-enviada" class="mensagem-enviada" style="display: none">
+        <p id="mensagem-enviada" class="mensagem-enviada" hidden>
           ✅ Mensagem enviada com sucesso!
         </p>
       </section>

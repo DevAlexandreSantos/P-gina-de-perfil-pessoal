@@ -108,3 +108,138 @@ if (formulario) {
     }, 6000);
   });
 }
+
+
+// ============================================
+// 4. PROJETOS DO GITHUB
+//    Busca os repositórios públicos na API do
+//    GitHub e monta os cards sozinho. O resultado
+//    fica 1 hora no localStorage, porque a API
+//    aceita só 60 consultas por hora por IP.
+//    Se algo falhar, o botão "Ver todos no GitHub"
+//    continua funcionando.
+// ============================================
+
+const USUARIO_GITHUB = 'DevAlexandreSantos';
+const MAX_REPOS = 6;
+const CACHE_CHAVE = 'repos-github';
+const CACHE_MINUTOS = 60;
+
+// Repositórios que não precisam aparecer (nomes em minúsculo):
+// este próprio site e o repositório de README do perfil
+const REPOS_IGNORADOS = ['p-gina-de-perfil-pessoal', USUARIO_GITHUB.toLowerCase()];
+
+const listaRepos = document.getElementById('repos-github');
+
+function lerCache() {
+  try {
+    const salvo = JSON.parse(localStorage.getItem(CACHE_CHAVE));
+    if (salvo && Date.now() - salvo.hora < CACHE_MINUTOS * 60 * 1000) {
+      return salvo.repos;
+    }
+  } catch (erro) {
+    // cache inválido ou indisponível: segue para a API
+  }
+  return null;
+}
+
+function salvarCache(repos) {
+  try {
+    localStorage.setItem(CACHE_CHAVE, JSON.stringify({ hora: Date.now(), repos: repos }));
+  } catch (erro) {
+    // localStorage bloqueado: tudo bem, só não guarda
+  }
+}
+
+async function buscarRepos() {
+  const emCache = lerCache();
+  if (emCache) return emCache;
+
+  const resposta = await fetch(
+    'https://api.github.com/users/' + USUARIO_GITHUB + '/repos?sort=updated&per_page=30'
+  );
+  if (!resposta.ok) throw new Error('GitHub respondeu ' + resposta.status);
+
+  const todos = await resposta.json();
+  const repos = todos
+    .filter(function (repo) {
+      return !repo.fork && !REPOS_IGNORADOS.includes(repo.name.toLowerCase());
+    })
+    .slice(0, MAX_REPOS)
+    .map(function (repo) {
+      return {
+        nome: repo.name,
+        descricao: repo.description,
+        linguagem: repo.language,
+        url: repo.html_url
+      };
+    });
+
+  salvarCache(repos);
+  return repos;
+}
+
+// Monta o card com createElement/textContent:
+// assim o texto vindo do GitHub nunca é interpretado como HTML
+function criarCard(repo) {
+  const card = document.createElement('div');
+  card.className = 'card-projeto';
+
+  const emoji = document.createElement('div');
+  emoji.className = 'card-emoji';
+  emoji.textContent = '📦';
+
+  const titulo = document.createElement('h3');
+  titulo.textContent = repo.nome;
+
+  const descricao = document.createElement('p');
+  descricao.textContent = repo.descricao || 'Sem descrição.';
+
+  card.append(emoji, titulo, descricao);
+
+  if (repo.linguagem) {
+    const tags = document.createElement('div');
+    tags.className = 'card-tags';
+    const tag = document.createElement('span');
+    tag.className = 'tag';
+    tag.textContent = repo.linguagem;
+    tags.appendChild(tag);
+    card.appendChild(tags);
+  }
+
+  const link = document.createElement('a');
+  link.className = 'btn btn-card';
+  link.href = repo.url;
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.textContent = 'Ver no GitHub';
+  card.appendChild(link);
+
+  return card;
+}
+
+function mostrarStatus(texto) {
+  const aviso = document.createElement('p');
+  aviso.className = 'repos-status';
+  aviso.textContent = texto;
+  listaRepos.replaceChildren(aviso);
+}
+
+async function carregarRepos() {
+  if (!listaRepos) return;
+
+  try {
+    const repos = await buscarRepos();
+
+    if (repos.length === 0) {
+      mostrarStatus('Nenhum repositório público encontrado ainda.');
+      return;
+    }
+
+    listaRepos.replaceChildren(...repos.map(criarCard));
+  } catch (erro) {
+    mostrarStatus('Não consegui carregar os repositórios agora. Veja todos pelo botão abaixo.');
+  }
+}
+
+carregarRepos();
