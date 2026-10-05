@@ -123,7 +123,7 @@ if (formulario) {
 const USUARIO_GITHUB = 'DevAlexandreSantos';
 const MAX_REPOS = 6;
 const CACHE_CHAVE = 'repos-github';
-const CACHE_MINUTOS = 60;
+const CACHE_MINUTOS = 10;
 
 // Repositórios que não precisam aparecer (nomes em minúsculo):
 // este próprio site e o repositório de README do perfil
